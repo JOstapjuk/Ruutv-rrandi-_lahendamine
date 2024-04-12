@@ -80,7 +80,7 @@ c_label.grid(row=1, column=5, padx=5, pady=5)
 lahendada_button = tk.Button(root, text="Lahenda", command=lahendada_kvadraatiline)
 lahendada_button.grid(row=2, column=0, columnspan=6, padx=10, pady=5)
 
-result_label = tk.Label(root, text="", padx=10, pady=5, bg="yellow")
+result_label = tk.Label(root, text="", padx=10, pady=5, bg="#fca103")
 result_label.grid(row=3, column=0, columnspan=6, sticky="nsew")
 
 graf_button = tk.Button(root, text="Graafik", command=lambda: graafik(graf, d))
