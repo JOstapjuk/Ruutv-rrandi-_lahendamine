@@ -8,6 +8,7 @@ graf = False
 
 def lahendada_kvadraatiline():
     global graf
+    global d
     try:
         a = float(a_entry.get())
         b = float(b_entry.get())
@@ -56,14 +57,14 @@ def graafik(graf, d):
 
 root = tk.Tk()
 root.title("Ruutvõrrandi lahendamine")
-root.geometry("550x300")
+root.geometry("400x250")
 
-võrrand_label = tk.Label(root, text="Ruutvõrrandi lahendamine", fg="green", bg="#cfebf7",font="Arial")
+võrrand_label = tk.Label(root, text="Ruutvõrrandi lahendamine", fg="green", bg="#cfebf7")
 võrrand_label.grid(row=0, column=0, columnspan=6, padx=10, pady=5)
 
 a_entry = tk.Entry(root, width=5, bg="#cfebf7")
 a_entry.grid(row=1, column=0, padx=5, pady=5)
-a_label = tk.Label(root, text="x^2", fg="green", bg="#cfebf7",font="Arial")
+a_label = tk.Label(root, text="x^2", fg="green", bg="#cfebf7")
 a_label.grid(row=1, column=1, padx=5, pady=5)
 
 b_entry = tk.Entry(root, width=5, bg="#cfebf7",)
@@ -73,16 +74,16 @@ b_label.grid(row=1, column=3, padx=5, pady=5)
 
 c_entry = tk.Entry(root, width=5, bg="#cfebf7")
 c_entry.grid(row=1, column=4, padx=5, pady=5)
-c_label = tk.Label(root, text="= 0", fg="green", bg="#cfebf7",font="Arial")
+c_label = tk.Label(root, text="= 0", fg="green", bg="#cfebf7")
 c_label.grid(row=1, column=5, padx=5, pady=5)
 
 lahendada_button = tk.Button(root, text="Lahenda", command=lahendada_kvadraatiline)
 lahendada_button.grid(row=2, column=0, columnspan=6, padx=10, pady=5)
 
-result_label = tk.Label(root, text="", padx=10, pady=5, bg="yellow",font="Arial")
+result_label = tk.Label(root, text="", padx=10, pady=5, bg="yellow")
 result_label.grid(row=3, column=0, columnspan=6, sticky="nsew")
 
-graf_button = tk.Button(root, text="Graafik", command=lambda: graafik(graf, None))
+graf_button = tk.Button(root, text="Graafik", command=lambda: graafik(graf, d))
 graf_button.grid(row=4, column=0, columnspan=6, padx=10, pady=5)
 
 root.mainloop()
