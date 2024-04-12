@@ -1,43 +1,88 @@
 import tkinter as tk
 from tkinter import messagebox
+from tkinter import font
+import matplotlib.pyplot as plt
+import numpy as np
 
-def solve_quadratic(a, b, c):
+graf = False
+
+def lahendada_kvadraatiline():
+    global graf
     try:
         a = float(a_entry.get())
         b = float(b_entry.get())
         c = float(c_entry.get())
-        discriminant = b**2 - 4*a*c
-        if discriminant < 0:
-            messagebox.showinfo("Tulemus", "Tegelikke juuri pole".)
-        elif discriminant == 0:
+        
+        d = b**2 - 4*a*c
+        if d < 0:
+            messagebox.showinfo("Tulemus", "Tegelikke juuri pole")
+            graf = False
+        elif d == 0:
             x = -b / (2*a)
-            messagebox.showinfo("Tulemus", f"Üks juur: x = {x}")
+            messagebox.showinfo("Tulemus", f"Tekst oli lisatud pealkirjasse")
+            graf = True
         else:
-            x1 = (-b + discriminant**0.5) / (2*a)
-            x2 = (-b - discriminant**0.5) / (2*a)
-            messagebox.showinfo("Tulemus", f"Kaks juurt: x1 = {x1}, x2 = {x2}")
+            x1 = (-b + d**0.5) / (2*a)
+            x2 = (-b - d**0.5) / (2*a)
+            messagebox.showinfo("Tulemus", f"Tekst oli lisatud pealkirjasse")
+            graf = True
+        result_label.configure(text=f"D = {d}\nx1 = {x1}, x2 = {x2}")
     except ValueError:
         messagebox.showerror("Tähelepanu", "On vaja sisestada numbreid!")
 
+def graafik(graf, d):
+    if graf==True:
+        a = float(a_entry.get())
+        b = float(b_entry.get())
+        c = float(c_entry.get())
+        
+        x0 = -b / (2*a)
+        y0 = a*x0*x0 + b*x0 + c
+        x1 = np.arange(x0-10, x0+10, 0.5)
+        y1 = a*x1**2 + b*x1 + c
+        
+        plt.plot(x1, y1, 'b-d')
+        plt.title("Ruudu võrrand")
+        plt.ylabel("y")
+        plt.xlabel("x")
+        plt.grid(True)
+        plt.show()
+        
+        text = f"Parabooli tipp ({x0:.2f}, {y0:.2f})"
+    else:
+        text = "Graafikut ei saa ehitada"
+    
+    result_label.configure(text=f"D = {d}\n{text}")
+
 root = tk.Tk()
 root.title("Ruutvõrrandi lahendamine")
+root.geometry("550x300")
 
-a_label = tk.Label(root, text="a:", bg=)
-a_label.grid(row=0, column=0, padx=10, pady=5)
-a_entry = tk.Entry(root, bg=)
-a_entry.grid(row=0, column=1, padx=10, pady=5)
+võrrand_label = tk.Label(root, text="Ruutvõrrandi lahendamine", fg="green", bg="#cfebf7",font="Arial")
+võrrand_label.grid(row=0, column=0, columnspan=6, padx=10, pady=5)
 
-b_label = tk.Label(root, text="b:", bg=)
-b_label.grid(row=1, column=0, padx=10, pady=5)
-b_entry = tk.Entry(root, bg=)
-b_entry.grid(row=1, column=1, padx=10, pady=5)
+a_entry = tk.Entry(root, width=5, bg="#cfebf7")
+a_entry.grid(row=1, column=0, padx=5, pady=5)
+a_label = tk.Label(root, text="x^2", fg="green", bg="#cfebf7",font="Arial")
+a_label.grid(row=1, column=1, padx=5, pady=5)
 
-c_label = tk.Label(root, text="c:", bg=)
-c_label.grid(row=2, column=0, padx=10, pady=5)
-c_entry = tk.Entry(root, bg=)
-c_entry.grid(row=2, column=1, padx=10, pady=5)
+b_entry = tk.Entry(root, width=5, bg="#cfebf7",)
+b_entry.grid(row=1, column=2, padx=5, pady=5)
+b_label = tk.Label(root, text="x", fg="green", bg="#cfebf7")
+b_label.grid(row=1, column=3, padx=5, pady=5)
 
-solve_button = tk.Button(root, text="Otsusta", command=lambda: solve_quadratic(a_entry.get(), b_entry.get(), c_entry.get()), bg=)
-solve_button.grid(row=3, columnspan=2, padx=10, pady=10)
+c_entry = tk.Entry(root, width=5, bg="#cfebf7")
+c_entry.grid(row=1, column=4, padx=5, pady=5)
+c_label = tk.Label(root, text="= 0", fg="green", bg="#cfebf7",font="Arial")
+c_label.grid(row=1, column=5, padx=5, pady=5)
+
+lahendada_button = tk.Button(root, text="Lahenda", command=lahendada_kvadraatiline)
+lahendada_button.grid(row=2, column=0, columnspan=6, padx=10, pady=5)
+
+result_label = tk.Label(root, text="", padx=10, pady=5, bg="yellow",font="Arial")
+result_label.grid(row=3, column=0, columnspan=6, sticky="nsew")
+
+graf_button = tk.Button(root, text="Graafik", command=lambda: graafik(graf, None))
+graf_button.grid(row=4, column=0, columnspan=6, padx=10, pady=5)
 
 root.mainloop()
