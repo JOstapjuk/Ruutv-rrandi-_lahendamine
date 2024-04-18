@@ -18,12 +18,12 @@ def lahendada_kvadraatiline():
             graf = False
         elif d == 0:
             x = -b / (2*a)
-            messagebox.showinfo("Tulemus", f"Tekst oli lisatud pealkirjasse")
+            messagebox.showinfo("Tulemus", "Tekst oli lisatud pealkirjasse")
             graf = True
         else:
             x1 = (-b + d**0.5) / (2*a)
             x2 = (-b - d**0.5) / (2*a)
-            messagebox.showinfo("Tulemus", f"Tekst oli lisatud pealkirjasse")
+            messagebox.showinfo("Tulemus", "Tekst oli lisatud pealkirjasse")
             graf = True
         result_label.configure(text=f"D = {d}\nx1 = {x1}, x2 = {x2}")
     except ValueError:
@@ -146,7 +146,7 @@ def vaal():
     plt.grid(True)
     plt.show()
 
-def toggle_window_size():
+def akna_suuruse_lülitamine():
     if veel_button.cget("text") == "Suurenda akent":
         root.geometry("700x500")
         veel_button.config(text="Vähenda akent")
@@ -189,7 +189,7 @@ result_label.grid(row=3, column=0, columnspan=6, sticky="nsew")
 graf_button = Button(root, text="Graafik",bg="#cfebf7", command=lambda: graafik(graf, d))
 graf_button.grid(row=4, column=0, columnspan=6, padx=10, pady=5,sticky="nsew")
 
-veel_button = Button(root, text="Suurenda akent", bg="#cfebf7", command=toggle_window_size)
+veel_button = Button(root, text="Suurenda akent", bg="#cfebf7", command=akna_suuruse_lülitamine)
 veel_button.grid(row=5, column=0, columnspan=6, padx=10, pady=5,sticky="nsew")
 
 var = IntVar()
