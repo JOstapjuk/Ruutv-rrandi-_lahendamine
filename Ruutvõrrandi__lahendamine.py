@@ -130,11 +130,11 @@ def vaal():
     x10 = np.arange(3, 4, 0.5)
     y10 = [3] * len(x10)
     plt.figure()
-    plt.plot(x1, y1,color='blue') #zivot right
-    plt.plot(x2, y2,color='blue') #zivot left
-    plt.plot(x3, y3,color='black') #zgib hvost
-    plt.plot(x4, y4,color='black') #telo
-    plt.plot(x5, y5,color='red') #rot verh
+    plt.plot(x1, y1,color='blue') #zivot right *
+    plt.plot(x2, y2,color='blue') #zivot left *
+    plt.plot(x3, y3,color='black') #zgib hvost *
+    plt.plot(x4, y4,color='black') #telo *
+    plt.plot(x5, y5,color='red') #rot verh *
     plt.plot(x6, y6,color='red') #rot niz
     plt.plot(x7, y7,color='yellow') #hvost verh
     plt.plot(x8, y8,color='yellow') #hvost middle
